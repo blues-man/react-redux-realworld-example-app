@@ -14,9 +14,12 @@ RUN npm install
  
 # Copies everything over to Docker environment
 COPY . .
- 
-# Uses port which is used by the actual application
-EXPOSE 4100
- 
-# Finally runs the application
-CMD [ "npm", "start" ]
+
+# Build the React application
+CMD [ "npm", "run", "build" ]
+
+# Start new image to be deployed
+FROM nginx:1.18-alpine
+
+# Copy "compiled" React application
+COPY --from=0 /usr/src/app/build /usr/share/nginx/html
