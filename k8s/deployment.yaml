@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-realword-deployment
+  labels:
+    app: react-realword
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-realword
+  template:
+    metadata:
+      labels:
+        app: react-realword
+    spec:
+      containers:
+      - name: react-realword
+        image: quay.io/bluesman/react-realword:latest
+        ports:
+        - containerPort: 4100
