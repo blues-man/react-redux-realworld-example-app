@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: react-realworld-ingress
+  labels:
+    app: react-realworld
+spec:
+  rules:
+  - host: react-realword-my-eclipse-che.192.168.39.75.nip.io
+    http:
+      paths:
+      - backend:
+          serviceName: react-realworld-svc
+          servicePort: 4100
+        path: /
+        pathType: ImplementationSpecific
