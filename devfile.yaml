@@ -1,0 +1,35 @@
+metadata:
+  name: react-che-example
+projects:
+  - name: react-redux-realworld-example-app
+    source:
+      location: 'https://github.com/blues-man/react-redux-realworld-example-app'
+      type: git
+      branch: master
+components:
+  - id: che-incubator/typescript/latest
+    memoryLimit: 512Mi
+    type: chePlugin
+  - mountSources: true
+    endpoints:
+      - name: nodejs
+        port: 4100
+    memoryLimit: 512Mi
+    type: dockerimage
+    image: 'quay.io/eclipse/che-nodejs8-centos:7.13.2'
+    alias: nodejs
+apiVersion: 1.0.0
+commands:
+  - name: install all required dependencies
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/react-redux-realworld-example-app'
+        type: exec
+        command: npm install
+        component: nodejs
+  - name: start the local server
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/react-redux-realworld-example-app'
+        type: exec
+        command: npm start
+        component: nodejs
+
