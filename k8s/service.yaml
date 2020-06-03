@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: react-redux-svc
+  name: react-realworld-svc
 spec:
   selector:
-    app: react-realword
+    app: react-realworld
   ports:
     - protocol: TCP
       port: 4100
